@@ -18,7 +18,15 @@ var reducer = ( state = {
         }
 };
 
-var store = redux.createStore( reducer );
+var store = redux.createStore( reducer, redux.compose(
+    window.devToolsExtension ? window.devToolsExtension() : f => f 
+) );
+
+// Subscribe to changes.
+var unsubscribe = store.subscribe( () => {
+    var state = store.getState();
+    document.getElementById( 'app' ).innerHTML = state.searchText;
+})
 
 var currentState = store.getState();
 console.log( 'currentState', currentState );
