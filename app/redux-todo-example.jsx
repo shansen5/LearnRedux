@@ -20,7 +20,7 @@ var reducer = ( state = {
 
 var store = redux.createStore( reducer, redux.compose(
     window.devToolsExtension ? window.devToolsExtension() : f => f 
-) );
+));
 
 // Subscribe to changes.
 var unsubscribe = store.subscribe( () => {
@@ -34,5 +34,4 @@ console.log( 'currentState', currentState );
 store.dispatch( {
     type: 'CHANGE_SEARCH_TEXT',
     searchText: 'boo'
-} );
-console.log( 'Search text changed', store.getState() );
+});
